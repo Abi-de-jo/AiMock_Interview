@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/interviews/start", {
+      const res = await fetch("https://ai-mock-interview-back.vercel.app/api/interviews/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

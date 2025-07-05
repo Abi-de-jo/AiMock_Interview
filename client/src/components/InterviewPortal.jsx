@@ -128,7 +128,7 @@ const InterviewPortal = () => {
     
   
     try {
-      const res = await fetch("http://localhost:5000/api/conversations/end-interview", {
+      const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/end-interview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -150,7 +150,7 @@ const InterviewPortal = () => {
   const evaluateUserIntro = async (userAnswer) => {
     try {
       setIsProcessing(true);
-      const res = await fetch("http://localhost:5000/api/conversations/user-intro", {
+      const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/user-intro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userAnswer, sessionId }),
@@ -181,7 +181,7 @@ const InterviewPortal = () => {
   
 
   const handleSkillAnswer = async (answer) => {
-    const res = await fetch("http://localhost:5000/api/conversations/evaluate-skill-answer", {
+    const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/evaluate-skill-answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: currentSkillQuestion, answer, role }),
@@ -206,7 +206,7 @@ const InterviewPortal = () => {
 
   const handleHRAnswer = async (answer) => {
     try {
-      const res = await fetch("http://localhost:5000/api/conversations/evaluate-hr-answer", {
+      const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/evaluate-hr-answer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: currentHRQuestion, answer, role }),
@@ -240,7 +240,7 @@ const InterviewPortal = () => {
   
 
   const generateSkillQuestions = async (introText) => {
-    const res = await fetch("http://localhost:5000/api/conversations/skill-questions", {
+    const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/skill-questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userIntro: introText, role }),
@@ -271,7 +271,7 @@ const InterviewPortal = () => {
   const fetchHRQuestions = async () => {
     console.log("➡️ Fetching HR questions...");
   
-    const res = await fetch("http://localhost:5000/api/conversations/general-hr-questions", {
+    const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/general-hr-questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ role }),
@@ -298,7 +298,7 @@ const InterviewPortal = () => {
 
 
   const fetchIntroFromGemini = async () => {
-    const res = await fetch("http://localhost:5000/api/conversations/intro", {
+    const res = await fetch("https://ai-mock-interview-back.vercel.app/api/conversations/intro", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ AllDetails }),

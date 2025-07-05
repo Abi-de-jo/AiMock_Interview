@@ -11,7 +11,7 @@ export default function Dashboard() {
       if (!user?.email) return;
 
       try {
-        const res = await fetch(`http://localhost:5000/api/interviews/by-user?email=${encodeURIComponent(user.email)}`);
+        const res = await fetch(`https://ai-mock-interview-back.vercel.app/api/interviews/by-user?email=${encodeURIComponent(user.email)}`);
         const data = await res.json();
         console.log(data);
         setInterviews(data);
