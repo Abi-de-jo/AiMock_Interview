@@ -1,18 +1,29 @@
-import React ,{use} from 'react'
-
-const fetchUser = fetch("https://jsonplaceholder.typicode.com/albums/").then(res => res.json());
+import React from 'react'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Login from './components/Login'
+import Dashboard from './pages/Dashboard'
+import NewInterview from './pages/NewInterview'
+import InterviewPortal from './components/InterviewPortal'
+import About from './components/About'
+import Home from './components/Homepage'
+import Navbar from './components/Navbar'
 const App = () => {
-
-
-  const data = use(fetchUser);
-  
   return (
-    <div className='bg-[#111827] min-h-screen font-sans text-white'> 
-        { data.map((item) => (
-            <div key={item.id}>
-                <h1>{item.title}</h1>
-             </div>
-        ))}
+    <div>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/new-interview" element={<NewInterview />} />
+          <Route path="/interview-portal" element={<InterviewPortal />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/interview/:id" element={<InterviewPortal />} />
+          <Route path='/new' element={<NewInterview />} />
+          <Route path='/interview' element={<InterviewPortal />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
