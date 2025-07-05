@@ -1,3 +1,19 @@
 {
-    "rewrites":[{"source":"/(.*)","destination":"/"}]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "nodeVersion": "20.x"
+}
