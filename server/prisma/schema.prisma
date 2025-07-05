@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String             @id @default(auto()) @map("_id") @db.ObjectId
+  email      String             @unique
+  name       String?
+  interviews InterviewSession[]
+  createdAt  DateTime           @default(now())
+}
+
+model Conversation {
+  id                 String            @id @default(auto()) @map("_id") @db.ObjectId
+  interviewSession   InterviewSession @relation(fields: [interviewSessionId], references: [id])
+  interviewSessionId String           @db.ObjectId
+
+  question     String
+  userAnswer   String
+  isCorrect    Boolean
+  feedback     String
+  createdAt    DateTime         @default(now())
+}
+
+
+model InterviewSession {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  user          User           @relation(fields: [userId], references: [id])
+  userId        String         @db.ObjectId
+  name          String
+  company       String
+  role          String
+  difficulty    String
+  startedAt     DateTime       @default(now())
+  endedAt       DateTime?
+  questions     String[]       
+  answers       String[]       
+score         Float?      
+  summary       String?        
+  conversations Conversation[] 
+}
